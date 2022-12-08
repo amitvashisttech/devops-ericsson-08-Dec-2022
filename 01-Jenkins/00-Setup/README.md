@@ -10,7 +10,7 @@ sudo su -
 ```
   apt-get update; apt-get install default-jdk -y
   java -version
-  wget https://get.jenkins.io/war-stable/2.375.1/jenkins.war
+  wget https://get.jenkins.io/war-stable/2.319.2/jenkins.war
   mv jenkins.war /root/
 ```
 
