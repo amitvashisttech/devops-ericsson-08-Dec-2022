@@ -26,4 +26,8 @@ node {
     stage('Archive - Artifacts') {
          archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
     }
+
+    stage('Say Hi') {
+        sh 'echo "Welcome to the world of Jenkins"' 
+    }
 }
