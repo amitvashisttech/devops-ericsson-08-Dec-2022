@@ -27,5 +27,12 @@ node {
    stage('Docker Deployment - Stage') {
         sh 'docker-compose up -d --build' 
     }
-    
+
+   stage('Getting Ready For Ansible Deployment'){
+       sh "echo \'<h1>JENKINS TASK BUILD ID: ${env.BUILD_DISPLAY_NAME}</h1>\' > ansible-code/files/index.html"
+   }
+
+   stage('Ansible Deployment'){
+       sh "cd ansible-code; ansible-playbook playbook.yaml"
+   }
 }
