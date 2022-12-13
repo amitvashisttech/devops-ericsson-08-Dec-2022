@@ -1,0 +1,123 @@
+181  mkdir 05-Ansible
+  182  ls
+  183  cd 05-Ansible/
+  184  ls
+  185  apt-get install ansible ssh-pass -y
+  186  apt-get install ansible sshpass -y
+  187  ls
+  188  mkdir 00-Setup
+  189  vim 00-Setup/README.md
+  190  ls
+  191  mkdir 01-Inventory
+  192  ls
+  193  cd 01-Inventory/
+  194  ls
+  195  vim hosts
+  196  ansible all -i hosts -m ping -u testadmin -k
+  197  ssh testadmin@localhost
+  198  ansible all -i hosts -m ping -u testadmin -k
+  199  ansible all -i hosts -m command -a 'df -h' -u testadmin -k
+  200  ansible all -i hosts -m command -a 'uname -a' -u testadmin
+  201  ansible all -i hosts -m command -a 'ip addr' -u testadmin
+  202  ansible all -i hosts -m command -a 'apt-get install wget -y' -u testadmin
+  203  ansible all -i hosts -m command -a 'apt-get install wget -y' -u testadmin -s
+  204  ansible-doc  -l
+  205  ansible-doc  apt
+  206  ansible all -i hosts -m apt -a 'name=ntp state=present' -u testadmin -s
+  207  ansible all -i hosts -m apt -a 'name=ntp state=present' -u testadmin -s -k
+  208  ansible all -i hosts -m service -a 'name=ntp state=started' -u testadmin -s -k
+  209  ansible all -i hosts -m service -a 'name=ntp state=stopped' -u testadmin -s -k
+  210  systemctl status ntp
+  211  ansible all -i hosts -m service -a 'name=ntp state=started' -u testadmin -s -k
+  212  systemctl status ntp
+  213  ls
+  214  vim hosts
+  215  ls
+  216  vim hosts
+  217  ansible all -i hosts -m service -a 'name=ntp state=started'  -s
+  218  ansible web -i hosts -m service -a 'name=ntp state=started'  -s
+  219  ip addr
+  220  ssh testadmin@192.168.1.4
+  221  ansible web -i hosts -m service -a 'name=ntp state=started'  -s
+  222  ls
+  223  cd ..
+  224  ls
+  225  cd devops-ericsson-08-Dec-2022/
+  226  ls
+  227  cd 05-Ansible/
+  228  ls
+  229  cd 01-Inventory/
+  230  ls
+  231  vim hosts
+  232  ls
+  233  history
+  234  ansible dc -i hosts -m ping
+  235  ls
+  236  cd ..
+  237  ls
+  238  cp -rf 01-Inventory 02-Ansible-Config
+  239  ls
+  240  cd 02-Ansible-Config/
+  241  ls
+  242  cat hosts
+  243  vim ansible.cfg
+  244  ls
+  245  ansible dc -m ping
+  246  ansible web -m ping
+  247  ansible web:master -m ping
+  248  ls
+  249  cd ..
+  250  ls
+  251  cp -rf 02-Ansible-Config 03-Playbooks
+  252  ls
+  253  cd 03-Playbooks/
+  254  ls
+  255  ansible web -m ping
+  256  vim playbook.yaml
+  257  cat ../../03-Docker/02-Dockerfiles/apache/v1/Dockerfile
+  258  ls
+  259  vim playbook.yaml
+  260  ls
+  261  ansible-playbook playbook.yaml
+  262  curl 192.168.1.6
+  263  curl 192.168.1.5
+  264  curl 192.168.1.4
+  265  docker ps
+  266  ls
+  267  mkdir files
+  268  ls
+  269  cd files/
+  270  ls
+  271  vim index.html
+  272  ls
+  273  cd ..
+  274  ls
+  275  vim playbook.yaml
+  276  ls
+  277  ansible-playbook playbook.yaml
+  278  curl 192.168.1.6
+  279  curl 192.168.1.5
+  280  ansible-playbook playbook.yaml
+  281  ssh testadmin@192.168.1.5
+  282  ls
+  283  ansible 192.168.1.5 -m service -a 'name=apache2 state=stopped'  -s
+  284  ansible-playbook playbook.yaml
+  285  ansible 192.168.1.5 -m service -a 'name=apache2 state=stopped'  -s
+  286  curl 192.168.1.5
+  287  ansible-playbook playbook.yaml
+  288  curl 192.168.1.5
+  289  ansible-playbook playbook.yaml
+  290  ls
+  291  vim playbook.yaml
+  292  ansible-playbook playbook.yaml
+  293  l
+  294  sls
+  295  ls
+  296  cd ..
+  297  ls
+  298  cd ..
+  299  ls
+  300  git add . ; git commit -m "05-Ansible" ; git push
+  301  ls
+  302  cd 05-Ansible/
+
