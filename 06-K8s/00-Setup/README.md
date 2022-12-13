@@ -8,13 +8,13 @@
 ## First clone this repository on your windows machine.
 
 ```
-git clone https://github.com/amitvashisttech/docker-k8s-ericsson-01-Dec-2022.git
+git clone https://github.com/amitvashisttech/devops-ericsson-08-Dec-2022.git
 ``` 
 
 ## Now provision three virtual machines with following commands:
 
 ```
-cd docker-k8s-ericsson-01-Dec-2022/00-Setup
+cd devops-ericsson-08-Dec-2022/00-Setup
 vagrant.exe up
 
 
@@ -36,8 +36,8 @@ Note :
 ```
 vagrant.exe ssh master
 sudo su - 
-git clone https://github.com/amitvashisttech/docker-k8s-ericsson-01-Dec-2022.git
-cd docker-k8s-ericsson-01-Dec-2022/00-Setup
+git clone https://github.com/amitvashisttech/devops-ericsson-08-Dec-2022.git
+cd devops-ericsson-08-Dec-2022/06-K8s/00-Setup
 sh install-k8s-master-node.sh
 
 ---
@@ -76,8 +76,8 @@ k8s-master   Ready    master   5m6s   v1.18.0
 ```
 vagrant.exe ssh woker1
 sudo su - 
-git clone https://github.com/amitvashisttech/docker-k8s-ericsson-01-Dec-2022.git
-cd docker-k8s-ericsson-01-Dec-2022/00-Setup
+git clone https://github.com/amitvashisttech/devops-ericsson-08-Dec-2022.git
+cd devops-ericsson-08-Dec-2022/06-K8s/00-Setup
 sh install-k8s-worker-node.sh
 ```
 
@@ -90,15 +90,15 @@ kubeadm join 172.31.0.100:6443 --token mr74fn.m4upjko4cfm5uwmz --discovery-token
 ```
 root@k8s-master:~# kubectl get nodes 
 NAME            STATUS   ROLES    AGE     VERSION
-k8s-master      Ready    master   8m45s   v1.18.0
-k8s-worker-01   Ready    <none>   2m1s    v1.18.0
-k8s-worker-02   Ready    <none>   24s     v1.18.0
+master      Ready    master   8m45s   v1.18.0
+worker1     Ready    <none>   2m1s    v1.18.0
+worker2     Ready    <none>   24s     v1.18.0
 
 root@k8s-master:~# kubectl get nodes -o wide 
-NAME            STATUS   ROLES    AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
-k8s-master      Ready    master   13m     v1.18.0   10.128.0.7    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
-k8s-worker-01   Ready    <none>   6m24s   v1.18.0   10.128.0.8    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
-k8s-worker-02   Ready    <none>   4m47s   v1.18.0   10.128.0.9    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
+NAME      STATUS   ROLES    AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+master    Ready    master   13m     v1.18.0   10.128.0.7    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
+worker1   Ready    <none>   6m24s   v1.18.0   10.128.0.8    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
+worker2   Ready    <none>   4m47s   v1.18.0   10.128.0.9    <none>        Ubuntu 16.04.7 LTS   4.15.0-1088-gcp   docker://20.10.0
 root@k8s-master:~# 
 
 ```
