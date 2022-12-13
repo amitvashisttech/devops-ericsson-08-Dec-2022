@@ -1,0 +1,31 @@
+node {
+    
+    // Get Artifactory Server Instnace Details 
+    def server = Artifactory.server "01"
+    def buildInfo = Artifactory.newBuildInfo()
+    def git_repo  = "https://github.com/amitvashisttech/devops-ericsson-08-Dec-2022.git"
+    def git_branch = "jenkins"
+    
+
+    stage('GitCheckout') {
+       git branch: git_branch , url: git_repo
+    }
+    
+    stage('Download Package'){ 
+         def downloadSpec = """{ 
+            "files": [
+               {
+                "pattern": "petclinic-repo/*.war",
+                "target": "target/"
+               }
+             ]
+
+         }"""
+        server.upload spec: downloadSpec 
+    }
+
+   stage('Docker Deployment - Stage') {
+        sh 'docker-compose up -d --build' 
+    }
+    
+}
